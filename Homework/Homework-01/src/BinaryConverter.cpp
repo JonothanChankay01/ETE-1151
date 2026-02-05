@@ -25,3 +25,10 @@ int main() {
     return 0;
 }
     
+char CharToBinary() {
+    char c;
+    cout<< " Enter character here: ";
+    cin>>c;
+    cout<< " The binary representation of " <<c<<" is: ";
+    return 0;
+}
