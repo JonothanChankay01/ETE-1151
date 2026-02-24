@@ -21,7 +21,7 @@ int main(){
     std::string months[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     int NumberOfDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    //Changes 28 to 29 for february if it is a leap year
+    //Changes 28 days to 29 days for february if it is a leap year
     if(LeapYear(year)){
         NumberOfDays[1]=29;
     }
