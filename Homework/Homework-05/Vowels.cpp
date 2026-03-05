@@ -12,7 +12,7 @@ int main() {
     for(int i = 0; i < input.length(); i++){ //determines the size of the array
         char message = input[i];
 
-        if (message == 'a' || message == 'A' || message == 'e' || message == 'E' || message == 'i' || message == 'I' || message == 'o' || message == 'O' || message == 'u' || message == 'U'){
+        if (message == 'a', message == 'A', message == 'e', message == 'E', message == 'i', message == 'I', message == 'o', message == 'O', message == 'u', message == 'U'){
             
             vowel_count++; //increments vowel count
         }
