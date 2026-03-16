@@ -106,27 +106,46 @@ return -1;
 int main() {
 MotorStatus motorStatus;
 uint8_t guess = 0;
+std::string bitwiseCommand;
 std::cout << "Motor Meltdown\n";
+std::cout << "Use the bitwise commands to build your guess before sending it to the motors.\n";
+std::cout<<"Commands: 'OR', 'AND', 'XOR', 'send', 'restart', 'q to quit'\n";
 bool won = false;
-while (!won){
-std::cout << "Enter your guess as:\n";
-std::cout << " - 8-bit binary (e.g., 00101000)\n";
-std::cout << " - hex (e.g., 0x28)\n";
-std::cout << "Type 'q' to quit.\n\n";
-std::cout << "Your guess: ";
-std::string s;
-std::cin >> s;
-if (s == "q")break;
+while (true){
+std::cout << "\n[Guess: " <<std::bitset<8>(guess)<< "]";
+std::cin >> bitwiseCommand;
+if (bitwiseCommand == "q") break;
+if (bitwiseCommand == "send"){
+    if (motorStatus.turnOff(guess)){
+        std::cout<<"Motors Stabilized\n";
+        break;
+    }
+    guess = 0;
+}
+else if (bitwiseCommand == "restart"){
+    guess = 0;
+}
+else {
+    std::string Str;
+    std::cin >> Str;
+    int val = checkInput(Str);
 
-int value = checkInput(s);
-if (value != -1){
-    won = motorStatus.turnOff(static_cast<uint8_t>(value));
+    if (val != -1){
+        if (bitwiseCommand == "OR") {
+            guess |= static_cast<uint8_t>(val);
+        }
+        else if (bitwiseCommand == "AND") {
+            guess &= static_cast<uint8_t>(val);
+        }
+        else if (bitwiseCommand == "XOR") {
+            guess ^= static_cast<uint8_t>(val);
+        }
+        else std::cout<<"Invalid Command. Input OR, AND, XOR, or send.\n";
+    }
+
+    
+}
 }
 
-}
-
-if (won){
-    std::cout<<"You have won the game!"<<std::endl;
-}
 return 0;
 }
