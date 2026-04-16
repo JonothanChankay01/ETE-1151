@@ -33,6 +33,10 @@ class PokemonType : public Pokemon {
     public:
         PokemonType(const std::string& name, int level, const std::string& type) : Pokemon(name, level), type(type) {}
 
+        void dislpayType() const {
+            std::cout<< "Pokemon Type: "<< type << std::endl;
+        }
+
 };
 
 //New Electric type for pikachu
@@ -60,6 +64,12 @@ class Pikachu : public ElectricPokemon {
 int main() {
 
     Pikachu pikachu(10);
+
+    std::cout<<"------The battle begins!------"<<std::endl;
+    pikachu.displayType();
+    pikachu.attack();
+    pikachu.defend();
+    pikachu.evolve();
 
     return 0;
 }
