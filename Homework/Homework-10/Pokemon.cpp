@@ -16,6 +16,8 @@ public:
 
     // Pure virtual function to be overridden by derived classes
     virtual void attack() const = 0;
+    virtual void defend() const = 0;
+    virtual void evolve() const = 0;
 
     // Function to display the Pokemon's details
     void display() const {
@@ -44,6 +46,15 @@ class ElectricPokemon : public PokemonType {
 class Pikachu : public ElectricPokemon {
     public:
         Pikachu(int level) : ElectricPokemon("Pikachu", level) {}
+        void attack() const override {
+            std::cout << "Pikachu uses Thunderbolt!" << std::endl;
+        }
+        void defend() const override {
+            std::cout << "Pikachu blocks the attack!" << std::endl;
+        }
+        void evolve() const override {
+            std::cout << "Pikachu evolves into Raichu!" << std::endl;
+        }
 };
 
 int main() {
